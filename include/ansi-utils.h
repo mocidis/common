@@ -18,4 +18,13 @@ do { \
     fprintf(stderr, "%s - %s\n", f, msg);\
     exit(-1)
 
+#define EXIT_IF_TRUE(clause, message) if(clause) { \
+    fprintf(stderr, message); \
+    exit(-1); \
+}
+#define RETURN_IF_TRUE(clause, message) if(clause) { \
+    fprintf(stderr, message); \
+    exit(-1); \
+}
+
 #endif

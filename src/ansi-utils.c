@@ -2,5 +2,6 @@
 
 void my_pause() {
     char temp[4];
-    fgets(temp, sizeof(temp), stdin);
+    char *t;
+    t = fgets(temp, sizeof(temp), stdin);
 }
