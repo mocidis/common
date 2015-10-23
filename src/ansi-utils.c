@@ -1,7 +1,10 @@
 #include <stdio.h>
 
+int THRESHOLD = 3;
+
 void my_pause() {
     char temp[4];
-    char *t;
-    t = fgets(temp, sizeof(temp), stdin);
+    if(fgets(temp, sizeof(temp), stdin) == NULL) {
+        printf("Error Null pointer return.\n");
+    }
 }
