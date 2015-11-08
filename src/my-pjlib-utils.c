@@ -45,7 +45,7 @@ pj_status_t join_mcast_group(pj_sock_t sock, const char* mcast) {
 	mreq.imr_multiaddr = pj_inet_addr(pj_cstr(&s, mcast));
 	mreq.imr_interface = pj_inet_addr(pj_cstr(&s1, "0.0.0.0"));
 
-	CHECK( __FILE__, pj_sock_setsockopt(sock, PJ_SOL_IP, PJ_IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq)) );
+	CHECK_R( __FILE__, pj_sock_setsockopt(sock, PJ_SOL_IP, PJ_IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq)) );
 
     return PJ_SUCCESS;
 }

@@ -20,7 +20,7 @@ extern int THRESHOLD;
 #define SHOW_LOG(level, print_op) \
     if (level <= THRESHOLD) print_op
 
-#define CHECK(f, op) \
+#define ANSI_CHECK(f, op) \
     do { \
         if ( 0 != op ) { \
             fprintf(stderr, "%s - %s error: %s\n", f, #op, strerror(errno)); \
@@ -28,7 +28,7 @@ extern int THRESHOLD;
         } \
     }  while(0)
 
-#define PANIC(f, msg) \
+#define ANSI_PANIC(f, msg) \
     fprintf(stderr, "%s - %s\n", f, msg);\
     exit(-1)
 
