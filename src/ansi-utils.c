@@ -24,3 +24,14 @@ void extract_ip(char *source, char *des) {
     strncpy(des, temp, temp2 -temp);
     des[temp2-temp] = '\0';
 }
+
+void extract_port(char *des, char *source) {
+    char *temp, *temp2;
+    temp = strchr(source, ':');
+    temp++;
+    temp2 = strchr(temp, ':');
+    temp2++;
+
+    strncpy(des, temp2, strlen(temp2));
+    des[strlen(temp2)] = '\0';
+}
