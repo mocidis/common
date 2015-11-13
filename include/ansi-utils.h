@@ -11,14 +11,17 @@ void ansi_copy_str(char *dest, char *src);
 
 extern int THRESHOLD;
 
+extern void (*showLog)(int level, const char *data, int len);
+
 #define UNUSED(x) \
     (void)(x)
 
 #define SET_LOG_LEVEL(level) \
     if (level >= 1 && level <=5) THRESHOLD = level
 
-#define SHOW_LOG(level, print_op) \
-    if (level <= THRESHOLD) print_op
+void SHOW_LOG(int level, const char *format, ...);
+//#define SHOW_LOG(level, print_op) \
+//    if (level <= THRESHOLD) print_op
 
 #define ANSI_CHECK(f, op) \
     do { \
@@ -38,7 +41,7 @@ extern int THRESHOLD;
 }
 
 #define PERROR_IF_TRUE(clause, message) if(clause) { \
-    SHOW_LOG(3, fprintf(stdout, "ERROR:: %s - %d - %s\n", message, errno, strerror(errno))); \
+    SHOW_LOG(3, "ERROR:: %s - %d - %s\n", message, errno, strerror(errno)); \
 }
 
 #define RETURN_IF_TRUE(clause, message) if(clause) { \
@@ -47,5 +50,6 @@ extern int THRESHOLD;
 }
 
 void extract_ip(char *source, char *des);
+void extract_port(char *des, char *source);
 
 #endif

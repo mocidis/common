@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
 
 int THRESHOLD = 3;
+
+void log_function_default(int level, const char *data, int len) {
+    fprintf(stdout, "%.*s", len, data);
+}
+void (*log_f)(int level, const char *data, int len) = &log_function_default;
 
 void my_pause() {
     char temp[4];
@@ -13,6 +19,18 @@ void ansi_copy_str(char *dest, char *source) {
     int len = strlen(source);
     strncpy(dest, source, len);
     dest[len] = '\0';
+}
+
+void SHOW_LOG(int level, const char *format, ...) {
+    va_list arg;
+    char buffer[200];
+    int len;
+    if (level <= THRESHOLD) {
+        va_start(arg, format);
+        len = vsprintf(buffer, format, arg);
+        log_f(level, buffer, len);
+        va_end(arg);
+    }
 }
 
 void extract_ip(char *source, char *des) {
