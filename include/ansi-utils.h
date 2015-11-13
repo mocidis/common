@@ -20,8 +20,6 @@ extern void (*showLog)(int level, const char *data, int len);
     if (level >= 1 && level <=5) THRESHOLD = level
 
 void SHOW_LOG(int level, const char *format, ...);
-//#define SHOW_LOG(level, print_op) \
-//    if (level <= THRESHOLD) print_op
 
 #define ANSI_CHECK(f, op) \
     do { \
