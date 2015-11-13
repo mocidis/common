@@ -49,7 +49,7 @@ do { \
 
 #define CHECK_FALSE(f, bool_val) \
 do { \
-    if( !bool_val ) { \
+    if( !(bool_val) ) { \
         err(f, #bool_val "is FALSE", 0); \
         exit(-1); \
     } \
@@ -57,7 +57,7 @@ do { \
 
 #define CHECK_FALSE_R(f, bool_val) \
 do { \
-    if( !bool_val ) { \
+    if( !(bool_val) ) { \
         err(f, #bool_val "is FALSE", 0); \
         return -1; \
     } \
