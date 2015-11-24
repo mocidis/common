@@ -4,7 +4,9 @@ pj_status_t __mpu_status;
 void err(const char *__file, const char *op, pj_status_t status) {
 	char errmsg[PJ_ERR_MSG_SIZE];
 	pj_strerror(status, errmsg, sizeof(errmsg));
-	PJ_LOG(3, (__file, "%s error: %s", op, errmsg));
+	//PJ_LOG(3, (__file, "%s error: %s", op, errmsg));
+	fprintf(stdout,"%s error: %s", op, errmsg);
+	fflush(stdout);
 }
 
 void setup_addr_with_port(pj_sockaddr_in *paddr, int port) {
