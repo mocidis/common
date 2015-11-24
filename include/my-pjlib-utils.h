@@ -12,13 +12,14 @@ pj_status_t udp_socket(int lport, pj_sock_t *sock);
 pj_status_t join_mcast_group(pj_sock_t sock, const char* mcast);
 
 extern pj_status_t __mpu_status;
+extern void (*__exit_f)(int retcode);
 
 #define CHECK(f, op) \
 do { \
 			__mpu_status = op; \
 			if ( __mpu_status != PJ_SUCCESS ) { \
 				err(f, #op, __mpu_status); \
-				exit(-1); \
+				__exit_f(-1); \
 			} \
 }  while(0)
 
@@ -35,7 +36,7 @@ do { \
 do { \
     if( pointer == NULL ) { \
         err(f, #pointer "is NULL", 0); \
-        exit(-1); \
+        __exit_f(-1); \
     } \
 } while(0)
 
@@ -51,7 +52,7 @@ do { \
 do { \
     if( !(bool_val) ) { \
         err(f, #bool_val "is FALSE", 0); \
-        exit(-1); \
+        __exit_f(-1); \
     } \
 } while(0)
 
@@ -66,7 +67,7 @@ do { \
 #define PANIC(f, msg) \
 do { \
     err(f, msg, 0); \
-    exit(-1); \
+    __exit_f(-1); \
 } while(0)
 
 #endif
