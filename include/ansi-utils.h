@@ -4,7 +4,9 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <unistd.h>
+#include <time.h>
 void my_pause();
 
 void ansi_copy_str(char *dest, char *src);
@@ -50,4 +52,6 @@ void SHOW_LOG(int level, const char *format, ...);
 void extract_ip(char *source, char *des);
 void extract_port(char *des, char *source);
 
+uint32_t get_ts();
+int ts2str(uint32_t ts, char *sts);
 #endif

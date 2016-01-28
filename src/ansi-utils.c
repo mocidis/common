@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
+#include <stdint.h>
+#include <time.h>
 
 int THRESHOLD = 3;
 
@@ -52,4 +54,16 @@ void extract_port(char *des, char *source) {
 
     strncpy(des, temp2, strlen(temp2));
     des[strlen(temp2)] = '\0';
+}
+
+uint32_t get_ts() {
+    time_t ts;
+    ts = time(NULL);
+    return (uint32_t) ts;
+}
+
+int ts2str(uint32_t ts, char *sts) {
+    int n = sprintf(sts, "%u", ts);
+    sts[n] = '\0';
+    return n;
 }

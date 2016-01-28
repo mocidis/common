@@ -113,6 +113,16 @@ int tx_volume_inc(pjmedia_snd_port *snd_port, int incremental) {
     return vol;
 }
 
+int dump_aud_param(pjmedia_snd_port *snd_port) {
+    pjmedia_aud_stream *aud_stream = pjmedia_snd_port_get_snd_stream(snd_port);
+    pjmedia_aud_param param;
+    pj_bzero(&param, sizeof(param));
+    if (aud_stream == NULL) return -1;
+    CHECK_R(__FILE__, pjmedia_aud_stream_get_param(aud_stream, &param));
+    PJ_LOG(3, (__FILE__, "Params->flags: %d", param.flags));
+    return 0;
+}
+
 void dump_codec_info(const char *file, const pjmedia_codec_info *cinfo) {
     PJ_LOG(3, (file, "dump_codec_info(): %*s clk:%d pt:%d, channel:%d\n", (int)cinfo->encoding_name.slen, cinfo->encoding_name.ptr, cinfo->clock_rate, cinfo->pt, cinfo->channel_cnt));
 }

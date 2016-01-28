@@ -37,8 +37,11 @@ pj_status_t create_stream(
                     int rport,
                     pjmedia_stream **stream
                 );
+void dump_aud_param(pjmedia_snd_port *port);
 void dump_codec_info(const char *file, const pjmedia_codec_info *cinfo);
 void dump_codec_param(const char *file, const pjmedia_codec_param *param);
 void dump_port_info(const char *file, pjmedia_port *port);
 
+int rx_volume_inc(pjmedia_snd_port *snd_port, int incremental);
+int tx_volume_inc(pjmedia_snd_port *snd_port, int incremental);
 #endif
